@@ -28,6 +28,13 @@ config PROC_FS
 	  This option will enlarge your kernel by about 67 KB. Several
 	  programs depend on this, so everyone should say Y here.
 
+config FAKE_VERIFIED_BOOT_STATE
+	bool "enable fake verified boot state"
+	depends on PROC_FS
+	default n
+        help
+        Enables fake verified boot state to bypass safetynet.
+
 config PROC_KCORE
 	bool "/proc/kcore support" if !ARM
 	depends on PROC_FS && MMU
