@@ -1,0 +1,5 @@
+# Normal rules
+#
+vdso.lds
+vdso.so
+vdso.so.dbg
