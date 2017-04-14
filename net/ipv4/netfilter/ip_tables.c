@@ -639,10 +639,6 @@ find_check_entry(struct ipt_entry *e, struct net *net, const char *name,
 	struct xt_mtchk_param mtpar;
 	struct xt_entry_match *ematch;
 
-	ret = check_entry(e, name);
-	if (ret)
-		return ret;
-
 	j = 0;
 	mtpar.net	= net;
 	mtpar.table     = name;
@@ -706,6 +702,7 @@ check_entry_size_and_hooks(struct ipt_entry *e,
 			   unsigned int valid_hooks)
 {
 	unsigned int h;
+	int err;
 
 	if ((unsigned long)e % __alignof__(struct ipt_entry) != 0 ||
 	    (unsigned char *)e + sizeof(struct ipt_entry) >= limit ||
@@ -1299,6 +1296,7 @@ do_add_counters(struct net *net, const void __user *user,
 	void *loc_cpu_entry;
 	struct ipt_entry *iter;
 	unsigned int addend;
+
 	paddc = xt_copy_counters_from_user(user, len, &tmp, compat);
 	if (IS_ERR(paddc))
 		return PTR_ERR(paddc);
@@ -1390,7 +1388,6 @@ compat_copy_entry_to_user(struct ipt_entry *e, void __user **dstptr,
 
 static int
 compat_find_calc_match(struct xt_entry_match *m,
-		       const char *name,
 		       const struct ipt_ip *ip,
 		       unsigned int hookmask,
 		       int *size)
@@ -1455,7 +1452,7 @@ check_compat_entry_size_and_hooks(struct compat_ipt_entry *e,
 
 	ret = xt_compat_check_entry_offsets(e, e->elems,
 					    e->target_offset, e->next_offset);
- 	if (ret)
+	if (ret)
 		return ret;
 
 	off = sizeof(struct ipt_entry) - sizeof(struct compat_ipt_entry);
@@ -1539,8 +1536,6 @@ compat_copy_entry_from_user(struct compat_ipt_entry *e, void **dstptr,
 
 static int
 translate_compat_table(struct net *net,
-		       const char *name,
-		       unsigned int valid_hooks,
 		       struct xt_table_info **pinfo,
 		       void **pentry0,
 		       const struct compat_ipt_replace *compatr)
@@ -1557,7 +1552,6 @@ translate_compat_table(struct net *net,
 	entry0 = *pentry0;
 	size = compatr->size;
 	info->number = compatr->num_entries;
-	}
 
 	duprintf("translate_compat_table: size %u\n", info->size);
 	j = 0;
@@ -1606,6 +1600,7 @@ translate_compat_table(struct net *net,
 	 */
 	xt_compat_flush_offsets(AF_INET);
 	xt_compat_unlock(AF_INET);
+
 	memcpy(&repl, compatr, sizeof(*compatr));
 
 	for (i = 0; i < NF_INET_NUMHOOKS; i++) {
@@ -2121,3 +2116,4 @@ EXPORT_SYMBOL(ipt_unregister_table);
 EXPORT_SYMBOL(ipt_do_table);
 module_init(ip_tables_init);
 module_exit(ip_tables_fini);
+

@@ -21,7 +21,6 @@
 #include <net/net_ratelimit.h>
 
 static int zero = 0;
-static int one = 1;
 static int ushort_max = USHRT_MAX;
 static int min_sndbuf = SOCK_MIN_SNDBUF;
 static int min_rcvbuf = SOCK_MIN_RCVBUF;
@@ -270,3 +269,4 @@ static __init int sysctl_core_init(void)
 }
 
 fs_initcall(sysctl_core_init);
+

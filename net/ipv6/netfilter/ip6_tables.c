@@ -728,7 +728,7 @@ check_entry_size_and_hooks(struct ip6t_entry *e,
 			 e, e->next_offset);
 		return -EINVAL;
 	}
- 
+
 	if (!ip6_checkentry(&e->ipv6))
 		return -EINVAL;
 
@@ -1306,6 +1306,7 @@ do_add_counters(struct net *net, const void __user *user, unsigned int len,
 	const void *loc_cpu_entry;
 	struct ip6t_entry *iter;
 	unsigned int addend;
+
 	paddc = xt_copy_counters_from_user(user, len, &tmp, compat);
 	if (IS_ERR(paddc))
 		return PTR_ERR(paddc);
@@ -1314,6 +1315,7 @@ do_add_counters(struct net *net, const void __user *user, unsigned int len,
 		ret = t ? PTR_ERR(t) : -ENOENT;
 		goto free;
 	}
+
 
 	local_bh_disable();
 	private = t->private;
@@ -1538,6 +1540,7 @@ compat_copy_entry_from_user(struct compat_ip6t_entry *e, void **dstptr,
 		if ((unsigned char *)de - base < newinfo->underflow[h])
 			newinfo->underflow[h] -= origsize - *size;
 	}
+}
 
 static int
 translate_compat_table(struct net *net,
@@ -1599,6 +1602,7 @@ translate_compat_table(struct net *net,
 	/* all module references in entry0 are now gone. */
 	xt_compat_flush_offsets(AF_INET6);
 	xt_compat_unlock(AF_INET6);
+
 	memcpy(&repl, compatr, sizeof(*compatr));
 
 	for (i = 0; i < NF_INET_NUMHOOKS; i++) {
@@ -2115,3 +2119,4 @@ EXPORT_SYMBOL(ip6t_do_table);
 
 module_init(ip6_tables_init);
 module_exit(ip6_tables_fini);
+
