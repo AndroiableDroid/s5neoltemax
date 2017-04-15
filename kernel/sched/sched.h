@@ -1379,6 +1379,13 @@ static inline void irq_time_write_end(void)
 {
 }
 
+static inline u64 irq_time_read(int cpu)
+{
+	return per_cpu(cpu_softirq_time, cpu) + per_cpu(cpu_hardirq_time, cpu);
+}
+#endif /* CONFIG_64BIT */
+#endif /* CONFIG_IRQ_TIME_ACCOUNTING */
+
 static inline void account_reset_rq(struct rq *rq)
 {
 #ifdef CONFIG_IRQ_TIME_ACCOUNTING
@@ -1391,10 +1398,3 @@ static inline void account_reset_rq(struct rq *rq)
 	rq->prev_steal_time_rq = 0;
 #endif
 }
-
-static inline u64 irq_time_read(int cpu)
-{
-	return per_cpu(cpu_softirq_time, cpu) + per_cpu(cpu_hardirq_time, cpu);
-}
-#endif /* CONFIG_64BIT */
-#endif /* CONFIG_IRQ_TIME_ACCOUNTING */
