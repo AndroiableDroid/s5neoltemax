@@ -21,6 +21,7 @@
 #include <linux/tick.h>
 #include <linux/ktime.h>
 
+
 #define TRANSITION_LATENCY_LIMIT	(10 * 1000 * 1000)
 #define SAMPLE_RATE			(40009)
 #define OPTIMAL_POSITION		(3)
@@ -344,6 +345,8 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 			j_dbs_info = &per_cpu(cs_cpu_dbs_info, j);
 			j_dbs_info->cur_policy = policy;
 
+			//j_dbs_info->prev_cpu_idle = get_cpu_idle_time(j,
+						//&j_dbs_info->prev_cpu_wall, 0);
 		}
 		this_dbs_info->requested_freq = policy->cur;
 
