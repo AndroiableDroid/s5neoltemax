@@ -375,10 +375,10 @@ LINUXINCLUDE    := \
 KBUILD_CPPFLAGS := -D__KERNEL__
 
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
-		   -fno-strict-aliasing -fno-common \
-		   -Werror-implicit-function-declaration \
-		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks \
+		   -fno-strict-aliasing -fno-common -Wno-unused-value \
+		   -Werror-implicit-function-declaration -Wno-uninitialized \
+		   -Wno-format-security -Wno-array-bounds -Wno-unused-variable -Wno-unused-function \
+		   -fno-delete-null-pointer-checks -Wno-maybe-uninitialized \
 		   -fdiagnostics-show-option -Werror \
 		   -std=gnu89
 KBUILD_AFLAGS_KERNEL :=
@@ -655,9 +655,6 @@ endif
 # arch Makefile may override CC so keep this after arch Makefile is included
 NOSTDINC_FLAGS += -nostdinc -isystem $(shell $(CC) -print-file-name=include)
 CHECKFLAGS     += $(NOSTDINC_FLAGS)
-
-# warn about C99 declaration after statement
-KBUILD_CFLAGS += $(call cc-option,-Wdeclaration-after-statement,)
 
 # disable pointer signed / unsigned warnings in gcc 4.0
 KBUILD_CFLAGS += $(call cc-disable-warning, pointer-sign)
