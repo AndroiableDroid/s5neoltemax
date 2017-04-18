@@ -1452,3 +1452,4 @@ MODULE_DESCRIPTION("'cpufreq_mythx_plug' - A cpufreq governor for "
 	"Latency sensitive workloads");
 MODULE_LICENSE("GPL");
 
+
