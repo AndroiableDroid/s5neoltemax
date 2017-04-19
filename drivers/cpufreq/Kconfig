@@ -188,6 +188,34 @@ config CPU_FREQ_DEFAULT_GOV_HYPER
 	  loading your cpufreq low-level hardware driver, using the
 	  'hyper' governor for latency-sensitive workloads.
 
+config CPU_FREQ_DEFAULT_GOV_LIONHEART
+        bool "lionheart"
+        select CPU_FREQ_GOV_LIONHEART
+        help
+          Use the CPUFreq governor 'lionheart' as default.
+
+config CPU_FREQ_DEFAULT_GOV_PEGASUSQ
+	bool "pegasusq"
+	select CPU_FREQ_GOV_PEGASUSQ
+	help
+	  Use the CPUFreq governor 'pegasusq' as default.
+
+config CPU_FREQ_DEFAULT_GOV_NIGHTMARE
+	bool "nightmare"
+	select CPU_FREQ_GOV_NIGHTMARE
+	help
+
+config CPU_FREQ_DEFAULT_GOV_ONDEMANDPLUS
+	bool "ondemandplus"
+	select CPU_FREQ_GOV_ONDEMANDPLUS
+	help
+  	  Use the CPUFreq governor 'ondemandplus' as default. This allows
+	  you to get a full dynamic frequency capable system by simply
+	  loading your cpufreq low-level hardware driver.
+	  Be aware that not all cpufreq drivers support the ondemandplus
+	  governor. If unsure have a look at the help section of the
+	  driver. Fallback governor will be the performance governor.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -345,11 +373,11 @@ config CPU_FREQ_GOV_CONSERVATIVEX
 	  'conservativex' - less aggressive version of conservative
 
 config CPU_FREQ_GOV_DANCEDANCE
-           tristate "'dancedance' cpufreq governor"
-           depends on CPU_FREQ
-           help
-             dancedance' - a "smart" optimized governor!
-             If in doubt, say N.
+        tristate "'dancedance' cpufreq governor"
+        depends on CPU_FREQ
+        help
+          dancedance' - a "smart" optimized governor!
+          If in doubt, say N.
 
 config CPU_FREQ_GOV_DARKNESS
 	tristate "'darkness' cpufreq governor"
@@ -360,6 +388,38 @@ config CPU_FREQ_GOV_HYPER
 	depends on CPU_FREQ
 	help
 	  'hyper' - A tweaked "ondemand" based smart and smooth optimized governor!
+	  If in doubt, say N.
+
+config CPU_FREQ_GOV_LIONHEART
+        tristate "'lionheart' cpufreq governor"
+        depends on CPU_FREQ
+        help
+          lionheart' - a "smart" optimized governor!
+          If in doubt, say N.
+
+config CPU_FREQ_GOV_PEGASUSQ
+	tristate "'pegasusq' cpufreq policy governor"
+
+config CPU_FREQ_GOV_NIGHTMARE
+	tristate "'nightmare' cpufreq governor"
+	depends on CPU_FREQ
+
+config CPU_FREQ_GOV_ONDEMANDPLUS
+	tristate "'ondemandplus' cpufreq policy governor"
+	depends on CPU_FREQ
+	help
+	  'ondemandplus' - This driver adds a dynamic cpufreq policy
+	  governor. The governor does a periodic polling and
+	  changes frequency based on the CPU utilization.
+	  The support for this governor depends on CPU capability to
+	  do fast frequency switching (i.e, very low latency frequency
+	  transitions).
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called cpufreq_ondemandplus.
+
+	  For details, take a look at linux/Documentation/cpu-freq.
+
 	  If in doubt, say N.
 
 config GENERIC_CPUFREQ_CPU0
