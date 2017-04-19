@@ -3155,9 +3155,11 @@ CONFIG_STAGING=y
 # CONFIG_IIO_GPIO_TRIGGER is not set
 # CONFIG_IIO_SYSFS_TRIGGER is not set
 # CONFIG_IIO_SIMPLE_DUMMY is not set
-# CONFIG_ZRAM is not set
 # CONFIG_BCM_WIMAX is not set
 # CONFIG_FT1000 is not set
+
+# Enable zram
+CONFIG_ZRAM=y
 
 #
 # Speakup console speech
