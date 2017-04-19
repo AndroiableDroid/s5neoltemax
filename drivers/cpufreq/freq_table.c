@@ -160,7 +160,7 @@ int cpufreq_frequency_table_target(struct cpufreq_policy *policy,
 				optimal.frequency = diff;
 				optimal.index = i;
 			}
-break;
+			break;
 		}
 	}
 	if (optimal.index > i) {
