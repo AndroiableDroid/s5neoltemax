@@ -786,7 +786,7 @@ void elv_completed_request(struct request_queue *q, struct request *rq)
 {
 	struct elevator_queue *e = q->elevator;
 
-if (rq->cmd_flags & REQ_URGENT) {
+	if (rq->cmd_flags & REQ_URGENT) {
 		q->notified_urgent = false;
 		WARN_ON(!q->dispatched_urgent);
 		q->dispatched_urgent = false;
