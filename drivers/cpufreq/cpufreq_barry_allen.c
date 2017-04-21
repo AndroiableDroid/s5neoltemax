@@ -35,7 +35,7 @@
 #include <linux/slab.h>
 #include <linux/kernel_stat.h>
 #include <asm/cputime.h>
-#include <linux/cpufreq_governor.h>
+#include "cpufreq_governor.h"
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/cpufreq_barry_allen.h>
