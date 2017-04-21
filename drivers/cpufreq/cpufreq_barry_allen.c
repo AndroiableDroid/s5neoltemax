@@ -1370,16 +1370,6 @@ static int cpufreq_governor_barry_allen(struct cpufreq_policy *policy,
 			return 0;
 		}
 
-		if (!have_governor_per_policy())
-			WARN_ON(cpufreq_get_global_kobject());
-
-		rc = sysfs_create_group(get_governor_parent_kobj(policy),
-				&barry_allen_attr_group);
-		if (rc) {
-			mutex_unlock(&gov_lock);
-			return rc;
-		}
-
 		idle_notifier_register(&cpufreq_barry_allen_idle_nb);
 		cpufreq_register_notifier(
 			&cpufreq_notifier_block, CPUFREQ_TRANSITION_NOTIFIER);
@@ -1408,8 +1398,6 @@ static int cpufreq_governor_barry_allen(struct cpufreq_policy *policy,
 		idle_notifier_unregister(&cpufreq_barry_allen_idle_nb);
 		sysfs_remove_group(get_governor_parent_kobj(policy),
 				&barry_allen_attr_group);
-		if (!have_governor_per_policy())
-			cpufreq_put_global_kobject();
 		mutex_unlock(&gov_lock);
 
 		break;
