@@ -2811,7 +2811,7 @@ EXPORT_SYMBOL(kmem_cache_free);
  * take the list_lock.
  */
 static int slub_min_order;
-static int slub_max_order = PAGE_ALLOC_COSTLY_ORDER;
+static int slub_max_order;
 static int slub_min_objects;
 
 /*
@@ -3536,6 +3536,7 @@ int kmem_cache_shrink(struct kmem_cache *s)
 	struct list_head *slabs_by_inuse =
 		kmalloc(sizeof(struct list_head) * objects, GFP_KERNEL);
 	unsigned long flags;
+        int ret = 0;
 
 	if (!slabs_by_inuse)
 		return -ENOMEM;
@@ -3579,7 +3580,7 @@ int kmem_cache_shrink(struct kmem_cache *s)
 	}
 
 	kfree(slabs_by_inuse);
-	return 0;
+	return ret;
 }
 EXPORT_SYMBOL(kmem_cache_shrink);
 

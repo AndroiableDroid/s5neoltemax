@@ -30,6 +30,7 @@
 #include <linux/highmem.h>
 #include <linux/slab.h>
 #include <linux/lzo.h>
+#include <linux/lz4.h>
 #include <linux/string.h>
 #include <linux/vmalloc.h>
 
@@ -38,6 +39,7 @@
 /* Globals */
 static int zram_major;
 struct zram *zram_devices;
+static const char *default_compressor = "lz4";
 
 /* Module params (documentation at end) */
 static unsigned int num_devices = 1;

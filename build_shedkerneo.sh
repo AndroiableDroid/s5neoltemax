@@ -144,11 +144,11 @@ FUNC_BUILD_BOOTIMG()
 
 	echo -n "SEANDROIDENFORCE" >> $KERNOUT
 
-	tar cvf shedkerneo.beta.tar boot.img
-	md5sum -t shedkerneo.beta.tar >> shedkerneo.beta.tar
-	mv shedkerneo.beta.tar shedkerneo.beta.tar.md5
+	tar cvf shedkerneo.1.0b.tar boot.img
+	md5sum -t shedkerneo.1.0b.tar >> shedkerneo.1.0b.tar
+	mv shedkerneo.1.0b.tar shedkerneo.1.0b.tar.md5
 	mv -f boot.img out/
-	mv -f shedkerneo.beta.tar.md5 out/
+	mv -f shedkerneo.1.0b.tar.md5 out/
 
 	echo ""
 	echo "================================="
