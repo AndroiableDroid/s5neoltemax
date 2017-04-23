@@ -18,6 +18,10 @@
 
 #include "ea8064g_param.h"
 
+#ifdef CONFIG_POWERSUSPEND
+#include <linux/powersuspend.h>
+#endif
+
 #ifdef CONFIG_PANEL_AID_DIMMING
 #include "aid_dimming.h"
 #include "dimming_core.h"
@@ -1064,6 +1068,10 @@ static int dsim_panel_displayon(struct dsim_device *dsim)
 		}
 	}
 
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE); // Yank555.lu : add hook to handle powersuspend tasks (wakeup)
+#endif	
+
 displayon_err:
 	return ret;
 }
@@ -1086,6 +1094,10 @@ static int dsim_panel_suspend(struct dsim_device *dsim)
 		}
 	}
 	panel->state = PANEL_STATE_SUSPENED;
+
+#ifdef CONFIG_POWERSUSPEND
+	set_power_suspend_state_panel_hook(POWER_SUSPEND_INACTIVE); // Yank555.lu : add hook to handle powersuspend tasks (wakeup)
+#endif	
 
 suspend_err:
 	return ret;
