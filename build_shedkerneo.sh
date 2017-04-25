@@ -206,6 +206,11 @@ export CROSS_COMPILE=$CROSS_COMPILE
 export USE_CCACHE=1
 export NUMBEROFCPUS=`grep 'processor' /proc/cpuinfo | wc -l`;
 
+	if [ "$dt" = "c" -o "$dt" = "C" ]; then
+	cp ./tools/s5neolte_defconfig ./arch/arm64/configs/s5neolte_defconfig
+	else
+	cp ./utilities/s5neolte_defconfig ./arch/arm64/configs/s5neolte_defconfig
+	fi
 	FUNC_BUILD_KERNEL
 	if [ "$dt" = "c" -o "$dt" = "C" ]; then
 	FUNC_BUILD_DTIMAGE

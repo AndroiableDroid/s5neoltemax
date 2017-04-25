@@ -399,8 +399,8 @@ CONFIG_CMDLINE="console=ttySAC1"
 CONFIG_CMDLINE_FROM_BOOTLOADER=y
 # CONFIG_CMDLINE_EXTEND is not set
 # CONFIG_CMDLINE_FORCE is not set
-# CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE is not set
-# CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE_NAMES is not set
+CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
+CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE_NAMES="exynos7580-universal7580 exynos7580-s5neo_rev00.dts exynos7580-s5neo_rev06 exynos7580-s5neo_rev07 exynos7580-s5neo_rev08 exynos7580-s5neo_rev09 exynos7580-s5neo_rev11"
 #
 # Userspace binary formats
 #
