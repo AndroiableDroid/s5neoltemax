@@ -119,7 +119,6 @@ static DEFINE_MUTEX(dev_opp_list_lock);
  * as we are under RCU lock.
  */
 struct device_opp *find_device_opp(struct device *dev)
-static struct device_opp *find_device_opp(struct device *dev)
 {
 	struct device_opp *tmp_dev_opp, *dev_opp = ERR_PTR(-ENODEV);
 

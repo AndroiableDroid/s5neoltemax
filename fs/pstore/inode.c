@@ -327,7 +327,7 @@ int pstore_mkfile(enum pstore_type_id type, char *psname, u64 id, int count,
 		sprintf(name, "mce-%s-%lld", psname, id);
 		break;
 	case PSTORE_TYPE_PMSG:
-		sprintf(name, sizeof(name), "pmsg-%s-%lld", psname, id);
+		sprintf(name, "pmsg-%s-%lld", psname, id);
 		break;
 	case PSTORE_TYPE_UNKNOWN:
 		sprintf(name, "unknown-%s-%lld", psname, id);

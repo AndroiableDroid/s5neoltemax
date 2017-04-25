@@ -3230,7 +3230,7 @@ static int addrconf_ifdown(struct net_device *dev, int how)
 		ipv6_mc_destroy_dev(idev);
 	} else {
 		ipv6_mc_down(idev);
-
+	}
 	idev->tstamp = jiffies;
 
 	/* Last: Shot the device (if unregistered) */
