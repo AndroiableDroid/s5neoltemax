@@ -65,7 +65,7 @@ FUNC_BUILD_KERNEL()
 
 	make ARCH=$ARCH $KERNEL_DEFCONFIG
 
-	make -j$NUMBEROFCPUS
+	make -j$NUMBEROFCPUS LOCALVERSION="#shedkerneo.1.0"
 	
 	mv -f $OUTDIR/Image $BUILTDIR/Image	
 
@@ -86,7 +86,8 @@ FUNC_BUILD_DTIMAGE()
 	
 	if [ -e $BUILTDIR/Image ]; then
 	echo "--- Creating custom dt.img ---"
-	./utilities/dtbtool -o $BUILTDIR/dt.img -s 2048 -p ./scripts/dtc/dtc ./arch/arm64/boot/dts/
+	#./utilities/dtbtool -o $BUILTDIR/dt.img -s 2048 -p ./scripts/dtc/dtc ./arch/arm64/boot/dts/
+	./tools/dtbtool -o $BUILTDIR/dt.img -s 2048 -p ./scripts/dtc/dtc ./arch/arm64/boot/dts/
 	else
 	echo "Device Tree STUCK in BUILD!"
 	fi;
@@ -144,11 +145,11 @@ FUNC_BUILD_BOOTIMG()
 
 	echo -n "SEANDROIDENFORCE" >> $KERNOUT
 
-	tar cvf shedkerneo.1.0b.tar boot.img
-	md5sum -t shedkerneo.1.0b.tar >> shedkerneo.1.0b.tar
-	mv shedkerneo.1.0b.tar shedkerneo.1.0b.tar.md5
+	tar cvf shedkerneo.1.0.tar boot.img
+	md5sum -t shedkerneo.1.0.tar >> shedkerneo.1.0.tar
+	mv shedkerneo.1.0.tar shedkerneo.1.0.tar.md5
 	mv -f boot.img out/
-	mv -f shedkerneo.1.0b.tar.md5 out/
+	mv -f shedkerneo.1.0.tar.md5 out/
 
 	echo ""
 	echo "================================="
@@ -207,9 +208,9 @@ export USE_CCACHE=1
 export NUMBEROFCPUS=`grep 'processor' /proc/cpuinfo | wc -l`;
 
 	if [ "$dt" = "c" -o "$dt" = "C" ]; then
-	cp ./tools/s5neolte_defconfig ./arch/arm64/configs/s5neolte_defconfig
+	cp ./tools/MakefileDTS ./arch/arm64/boot/dts/Makefile
 	else
-	cp ./utilities/s5neolte_defconfig ./arch/arm64/configs/s5neolte_defconfig
+	cp ./utilities/MakefileDTS ./arch/arm64/boot/dts/Makefile
 	fi
 	FUNC_BUILD_KERNEL
 	if [ "$dt" = "c" -o "$dt" = "C" ]; then
