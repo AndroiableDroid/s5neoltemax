@@ -248,6 +248,8 @@ rm -rf sizBT
 rm -rf out/Image
 rm -rf out/dt.img
 rm -rf out/ramdisk.gz
+rm -rf arch/arm64/boot/Image.gz
+rm -rf arch/arm64/boot/Image.gz-dtb
 echo ""
 echo "Check 'out' folder to get kernel img and tar file"
 echo ""
