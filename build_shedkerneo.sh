@@ -209,6 +209,8 @@ export NUMBEROFCPUS=`grep 'processor' /proc/cpuinfo | wc -l`;
 
 	if [ "$dt" = "c" -o "$dt" = "C" ]; then
 	cp ./tools/MakefileDTS ./arch/arm64/boot/dts/Makefile
+	rm -rf arch/arm64/boot/dts/exynos7580-universal7580_q.dtb
+	rm -rf arch/arm64/boot/dts/exynos7580-universal7580_rev01.dtb
 	else
 	cp ./utilities/MakefileDTS ./arch/arm64/boot/dts/Makefile
 	fi
