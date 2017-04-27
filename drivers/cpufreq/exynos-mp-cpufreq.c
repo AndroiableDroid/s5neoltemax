@@ -2012,3 +2012,4 @@ device_initcall(exynos_cpufreq_init);
 #else
 late_initcall(exynos_cpufreq_init);
 #endif
+
