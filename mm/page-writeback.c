@@ -114,13 +114,13 @@ EXPORT_SYMBOL_GPL(dirty_writeback_interval);
  * The longest time for which data is allowed to remain dirty
  */
 #ifdef CONFIG_POWERSUSPEND
-#define DEFAULT_DIRTY_EXPIRE_INTERVAL 3000 /* centiseconds */
-#define DEFAULT_SUSPEND_DIRTY_EXPIRE_INTERVAL 12000 /* centiseconds */
-unsigned int dirty_expire_interval,
-	resume_dirty_expire_interval;
-unsigned int sleep_dirty_expire_interval,
-	suspend_dirty_expire_interval;
-#else
++#define DEFAULT_DIRTY_EXPIRE_INTERVAL 3000 /* centiseconds */
++#define DEFAULT_SUSPEND_DIRTY_EXPIRE_INTERVAL 12000 /* centiseconds */
++unsigned int dirty_expire_interval,
++	resume_dirty_expire_interval;
++unsigned int sleep_dirty_expire_interval,
++	suspend_dirty_expire_interval;
++#else
 unsigned int dirty_expire_interval = 30 * 100; /* centiseconds */
 #endif
 
