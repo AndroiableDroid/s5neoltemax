@@ -330,10 +330,10 @@ static int exynos_regulator_set_voltage(int cluster, unsigned long volt)
 {
 	unsigned long target;
 
-	if (volt > MAXIMUM_CPU_VOLTAGE)
-		target = MAXIMUM_CPU_VOLTAGE;
-	else if (volt < MIN_CPU_VOLTAGE)
-		target = MIN_CPU_VOLTAGE;
+	if (volt > LIMIT_COLD_VOLTAGE)
+		target = LIMIT_COLD_VOLTAGE;
+	else if (volt < MIN_COLD_VOLTAGE)
+		target = MIN_COLD_VOLTAGE;
 
 	else
 		target = volt;
