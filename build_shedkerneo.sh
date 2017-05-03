@@ -6,7 +6,10 @@
 
 ARCH=arm64
 SUBARCH=arm64
-CROSS_COMPILE=/home/wilmans2m/toolchains/google/bin/aarch64-linux-android-
+#CROSS_COMPILE=/home/buildtest/ndk/android-ndk-r14b/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/
+CROSS_COMPILE=/home/wilmans2m/toolchains-google/bin/aarch64-linux-android-
+#CROSS_COMPILE=./toolchains-google/bin/aarch64-linux-android-
+#CROSS_COMPILE=/home/wilmans2m/toolchains/google/bin/aarch64-linux-android-
 #CROSS_COMPILE=/home/wilmans2m/toolchains/ndk/bin/aarch64-linux-android-
 #CROSS_COMPILE=/home/wilmans2m/toolchains/ndkr78/bin/aarch64-linux-android-
 #CROSS_COMPILE=/home/wilmans2m/toolchains/gccm49/bin/aarch64-linux-android-
